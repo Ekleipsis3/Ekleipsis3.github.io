@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Atividade 01</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            padding-top: 40px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 450px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .linha {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        label {
+            width: 130px;
+            text-align: right;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            flex: 1;
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background: #0b63f6;
+            border: none;
+            color: white;
+            padding: 7px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        button:hover {
+            background: #003f9a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Atividade 01</h2>
+
+        <div class="linha">
+            <label for="nomeCompleto">Nome Completo:</label>
+            <input type="text" id="nomeCompleto">
+            <button id="botãofoda">>></button>
+        </div>
+
+        <div class="linha">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome">
+        </div>
+
+        <div class="linha">
+            <label for="sobrenome">Sobrenome:</label>
+            <input type="text" id="sobrenome">
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    document.getElementById("botãofoda").addEventListener("click", function () {
+        let nomeCompleto = document.getElementById("nomeCompleto").value.trim();
+
+        if (nomeCompleto === "") return;
+
+        let partes = nomeCompleto.split(" ");
+
+        let nome = partes[0];                 
+        let sobrenome = partes.slice(1).join(" "); 
+        let nomecompleto = ("")
+
+        document.getElementById("nome").value = nome;
+        document.getElementById("sobrenome").value = sobrenome;
+        document.getElementById("nomeCompleto").value = nomecompleto;
+    });
+</script>
