@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/jpg" href="img/favicon.ico"/>
+    <title>Robotron 2000</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;500&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <main>
+        <section class="robotron">
+            <img class="robo" src="img/robotron-azul.png" alt="Robotron">
+            <figcaption class="titulo">ROBOTRON <br>2000</figcaption>
+        </section>
+
+        <section class="box estatisticas">
+            <div class="estatistica">
+                <p class="estatistica-titulo">Força</p>
+                <div class="estatistica-valor">
+                    <p class="estatistica-numero">768</p>
+                </div>
+            </div>
+            <div class="estatistica">
+                <p class="estatistica-titulo">Poder</p>
+                <div class="estatistica-valor">
+                    <p class="estatistica-numero">630</p>
+                </div>
+            </div>
+            <div class="estatistica">
+                <p class="estatistica-titulo">Energia</p>
+                <div class="estatistica-valor">
+                    <p class="estatistica-numero">289</p>
+                </div>
+            </div>
+            <div class="estatistica">
+                <p class="estatistica-titulo">Velocidade</p>
+                <div class="estatistica-valor">
+                    <p class="estatistica-numero">597</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="equipamentos">
+            <form action="" class="montador">
+                <div class="box montador-conteudo">
+                    <div class="peca">
+                        <label for="" class="peca-titulo">Braços</label>
+                        <div class="controle">
+                            <button type="button" class="controle-ajuste" id="braçomenos">-</button>
+                            <input type="text" class="controle-contador" value="00" id="braço">
+                            <button type="button" class="controle-ajuste" id="braçomais">+</button>
+                        </div>
+                    </div>
+                    <hr class="linha">
+                    <div class="peca">
+                        <label for="" class="peca-titulo">Blindagem</label>
+                        <div class="controle">
+                            <button type="button" class="controle-ajuste" id="blindagemmenos">-</button>
+                            <input type="text" class="controle-contador" value="00" id="blindagem">
+                            <button type="button" class="controle-ajuste" id="blindagemmais">+</button>
+                        </div>
+                    </div>
+                    <hr class="linha">
+                    <div class="peca">
+                        <label for="" class="peca-titulo">Núcleos</label>
+                        <div class="controle">
+                            <button type="button" class="controle-ajuste" id="nucleomenos">-</button>
+                            <input type="text" class="controle-contador" value="00" id="nucleo">
+                            <button type="button" class="controle-ajuste" id="nucleomais">+</button>
+                        </div>
+                    </div>
+                    <hr class="linha">
+                    <div class="peca">
+                        <label for="" class="peca-titulo">Pernas</label>
+                        <div class="controle">
+                            <button type="button" class="controle-ajuste" id="pernasmenos">-</button>
+                            <input type="text" class="controle-contador" value="00" id="pernas">
+                            <button type="button" class="controle-ajuste" id="pernasmais">+</button>
+                        </div>
+                    </div>
+                    <hr class="linha">
+                    <div class="peca">
+                        <label for="" class="peca-titulo">Foguetes</label>
+                        <div class="controle">
+                            <button type="button" class="controle-ajuste" id="Foguetesmenos">-</button>
+                            <input type="text" class="controle-contador" value="00" id="foguete">
+                            <button type="button" class="controle-ajuste" id="Foguetesmais">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="submit" value="Iniciar produção" class="producao" id="producao">
+
+                <div>
+                <input type="button" value=">>" class="avançar" id="avançar" onclick="avançarcor()">
+                <input type="button" value="<<" class="retornar" id="retornar" onclick="retornarcor()">
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
+
+<script>
+    let cores = ["img/robotron-azul.png", "img/robotron-vermelho.png", "img/robotron-rosa.png", "img/robotron-preto.png", "img/robotron-branco.png", "img/robotron-amarelo.png"] 
+    let imagem = 0;
+
+document.getElementsByClassName("robo")[0].src = cores[imagem];
+
+document.getElementById("avançar").addEventListener("click", function () {
+    imagem++;
+    if (imagem >= cores.length) {
+        imagem = 0;
+    }
+    document.getElementsByClassName("robo")[0].src = cores[imagem];
+});
+
+document.getElementById("retornar").addEventListener("click", function () {
+    imagem--;
+    if (imagem < 0) {
+        imagem = cores.length - 1;
+    }
+    document.getElementsByClassName("robo")[0].src = cores[imagem];
+});
+
+//----------------------------------EQUIPAMENTOS----------------------------------------
+
+document.getElementById("braçomais").addEventListener("click", function () {
+    let campo = document.getElementById("braço");
+    campo.value = Number(campo.value) + 1;
+    if(Number(campo.value) > 10) {
+        campo.value = 0;
+    }
+});
+
+document.getElementById("braçomenos").addEventListener("click", function () {
+    let campo = document.getElementById("braço");
+    campo.value = Number(campo.value) - 1;
+    if(Number(campo.value) < 0) {
+        campo.value = 0;
+    }
+});
+
+document.getElementById("blindagemmais").addEventListener("click", function () {
+    let campo = document.getElementById("blindagem");
+    campo.value = Number(campo.value) + 1;
+    if(Number(campo.value) > 10) {
+        campo.value = 0;
+    }
+});
+
+document.getElementById("blindagemmenos").addEventListener("click", function () {
+    let campo = document.getElementById("blindagem");
+    campo.value = Number(campo.value) - 1;
+    if(Number(campo.value) < 0) {
+        campo.value = 0;
+    }
+});
+
+document.getElementById("nucleomais").addEventListener("click", function () {
+    let campo = document.getElementById("nucleo");
+    campo.value = Number(campo.value) + 1;
+    if(Number(campo.value) > 10) {
+        campo.value = 0;
+    }
+});
+
+document.getElementById("nucleomenos").addEventListener("click", function () {
+    let campo = document.getElementById("nucleo");
+    campo.value = Number(campo.value) - 1;
+    if(Number(campo.value) < 0) {
+        campo.value = 0;
+    }
+});
+
+document.getElementById("pernasmais").addEventListener("click", function () {
+    let campo = document.getElementById("pernas");
+    campo.value = Number(campo.value) + 1;
+    if(Number(campo.value) > 10) {
+        campo.value = 0;
+    }
+});
+
+document.getElementById("pernasmenos").addEventListener("click", function () {
+    let campo = document.getElementById("pernas");
+    campo.value = Number(campo.value) - 1;
+    if(Number(campo.value) < 0) {
+        campo.value = 0;
+    }
+});
+
+document.getElementById("Foguetesmais").addEventListener("click", function () {
+    let campo = document.getElementById("foguete");
+    campo.value = Number(campo.value) + 1;
+    if(Number(campo.value) > 10) {
+        campo.value = 0;
+    }
+});
+
+document.getElementById("Foguetesmenos").addEventListener("click", function () {
+    let campo = document.getElementById("foguete");
+    campo.value = Number(campo.value) - 1;
+    if(Number(campo.value) < 0) {
+        campo.value = 0;
+    }
+});
+
+</script>
