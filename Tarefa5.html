@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Formulário de Pré-Matrícula</title>
+<style>
+    body { font-family: Arial; margin: 30px; }
+    fieldset { margin-bottom: 20px; padding: 20px; }
+    legend { font-weight: bold; }
+    label { display: inline-block; width: 150px; margin-bottom: 5px; }
+    input, select { margin-bottom: 8px; }
+    .btns { margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h1>Escola Virtual</h1>
+<h2>Formulário de Pré-Matrícula</h2>
+
+<form id="form">
+
+<fieldset>
+    <legend>Dados Pessoais</legend>
+
+    <label>Nome do Aluno:</label>
+    <input type="text" id="aluno"><br>
+
+    <label>Nascimento (dd/mm/aaaa):</label>
+    <input type="text" id="dia" size="2"> /
+    <input type="text" id="mes" size="2"> /
+    <input type="text" id="ano" size="4"><br>
+
+    <label>Nome da Mãe:</label>
+    <input type="text" id="mae"><br>
+
+    <label>Nome do Pai:</label>
+    <input type="text" id="pai"><br>
+
+    <label>Telefone: DDD</label>
+    <input type="text" id="ddd" size="3">
+    Tel:
+    <input type="text" id="tel" size="10">
+    Ramal:
+    <input type="text" id="ramal" size="5"><br>
+
+    <label>E-mail:</label>
+    <input type="text" id="email" size="30"><br>
+</fieldset>
+
+<fieldset>
+    <legend>Informações de Matrícula</legend>
+
+    <label>Série:</label>
+    <select id="serie">
+        <option value="pré-escolar">Pré-escolar</option>
+        <option value="1º ano">1º ano</option>
+        <option value="2º ano">2º ano</option>
+        <option value="3º ano">3º ano</option>
+    </select><br>
+
+    <label>Turno:</label>
+    <input type="radio" name="turno" value="Manhã"> Manhã
+    <input type="radio" name="turno" value="Tarde"> Tarde
+    <br><br>
+
+    <label>Atividades Extracurriculares:</label><br>
+
+    <input type="checkbox" name="atv" value="Informática"> Informática<br>
+    <input type="checkbox" name="atv" value="Música"> Música<br>
+    <input type="checkbox" name="atv" value="Balet"> Balet<br>
+    <input type="checkbox" name="atv" value="Pintura"> Pintura<br>
+    <input type="checkbox" name="atv" value="Judô"> Judô<br>
+    <input type="checkbox" name="atv" value="Futebol"> Futebol<br>
+</fieldset>
+
+<div class="btns">
+    <button type="button" onclick="validar()">Enviar Formulário</button>
+    <button type="reset">Limpar Campos</button>
+</div>
+
+</form>
+
+<script>
+
+const DDDs = [
+    11,12,13,14,15,16,17,18,19,
+    21,22,24,27,28,
+    31,32,33,34,35,37,38,
+    41,42,43,44,45,46,
+    47,48,49,
+    51,53,54,55,
+    61,62,63,64,65,66,67,68,69,
+    71,73,74,75,77,79,
+    81,82,83,84,85,86,87,88,89,
+    91,92,93,94,95,96,97,98,99
+];
+
+function validar() {
+
+    let aluno = document.getElementById("aluno").value.trim();
+    let dia = Number(document.getElementById("dia").value);
+    let mes = Number(document.getElementById("mes").value);
+    let ano = Number(document.getElementById("ano").value);
+    let mae = document.getElementById("mae").value.trim();
+    let pai = document.getElementById("pai").value.trim();
+    let ddd = document.getElementById("ddd").value;
+    let tel = document.getElementById("tel").value;
+    let email = document.getElementById("email").value.trim();
+
+    if (!aluno || !dia || !mes || !ano || !mae || !pai || !ddd || !tel || !email) {
+        alert("Preencha todos os campos obrigatórios.");
+        return;
+    }
+
+    let data = new Date(ano, mes - 1, dia);
+    if (data.getDate() !== dia || data.getMonth() + 1 !== mes || data.getFullYear() !== ano) {
+        alert("Data de nascimento inválida.");
+        return;
+    }
+
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert("E-mail inválido.");
+        return;
+    }
+
+    if (!DDDs.includes(Number(ddd))) {
+        alert("DDD inválido.");
+        return;
+    }
+
+    let atividades = document.querySelectorAll("input[name='atv']:checked");
+    if (atividades.length > 3) {
+        alert("Escolha no máximo 3 atividades extracurriculares.");
+        return;
+    }
+
+    alert("Cadastro realizado com sucesso!");
+}
+
+</script>
+
+</body>
+</html>
